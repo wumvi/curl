@@ -1,0 +1,21 @@
+version: '3.3'
+services:
+  proxy:
+    image: serjs/go-socks5-proxy
+    container_name: socks5
+    hostname: socks5
+    ports:
+      - "1080:1080"
+    environment:
+      - PROXY_USER=docker
+      - PROXY_PASSWORD=pwd
+
+  http:
+    image: php:7.4.7-cli-buster
+    container_name: http
+    hostname: http
+    ports:
+      - 8884:8884
+    volumes:
+      - ./:/code/
+    entrypoint: php -S 0.0.0.0:8884 -t /code/dev/
