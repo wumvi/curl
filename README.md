@@ -1,6 +1,9 @@
-docker run -d --name socks5 -p 1080:1080 -e PROXY_USER=docker -e PROXY_PASSWORD=pwd serjs/go-socks5-proxy
-
-##### Methods
+[![Latest Stable Version](https://poser.pugx.org/wumvi/curl/v/stable?format=flat-square)](https://packagist.org/packages/wumvi/curl)
+[![GitHub issues](https://img.shields.io/github/issues/wumvi/curl.svg?style=flat-square)](https://github.com/wumvi/curl/issues)
+[![Build status](https://travis-ci.org/wumvi/curl.svg?branch=master)](https://travis-ci.org/wumvi/curl)
+[![codecov](https://codecov.io/gh/wumvi/curl/branch/master/graph/badge.svg)](https://codecov.io/gh/wumvi/curl)
+[![Maintainability](https://api.codeclimate.com/v1/badges/943689de2ecb8ae407ac/maintainability)](https://codeclimate.com/github/wumvi/curl/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/943689de2ecb8ae407ac/test_coverage)](https://codeclimate.com/github/wumvi/curl/test_coverage)
 
 
 ##### Example
