@@ -24,9 +24,11 @@ class FileWriterPipe extends Pipe
             $fwout = fopen($this->outFile, 'w');
             curl_setopt($curl, CURLOPT_BINARYTRANSFER, true);
             curl_setopt($curl, CURLOPT_WRITEFUNCTION, function ($curl, $data) use ($fwout) {
+                // @codeCoverageIgnoreStart
                 if (!is_resource($fwout)) {
                     throw new CurlException('Wrong file descriptor');
                 }
+                // @codeCoverageIgnoreEnd
                 fwrite($fwout, $data);
 
                 return strlen($data);

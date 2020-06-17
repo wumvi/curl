@@ -8,7 +8,7 @@ use Wumvi\Curl\Exception\CurlException;
 use Wumvi\Curl\Exception\CurlTimeoutException;
 use Wumvi\Curl\Pipe\Pipe;
 
-class Curl
+class Curl implements ICurl
 {
     public const TIMEOUT_WAIT = 2;
     public const TIMEOUT_CONNECT = 1;
