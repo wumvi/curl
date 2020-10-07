@@ -32,6 +32,7 @@ class PostMethodPipe extends Pipe
     public function apply($curl): Pipe
     {
         curl_setopt($curl, CURLOPT_POST, true);
+        curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'POST');
 
         if (!empty($this->data)) {
             curl_setopt($curl, CURLOPT_POSTFIELDS, $this->data);
