@@ -7,6 +7,7 @@ use Wumvi\Curl\Exception\CurlConnectionTimeoutException;
 use Wumvi\Curl\Exception\CurlException;
 use Wumvi\Curl\Exception\CurlTimeoutException;
 use Wumvi\Curl\Pipe\Pipe;
+use Wumvi\Curl\Pipe\MoreInfo;
 
 class Curl implements ICurl
 {
@@ -115,13 +116,18 @@ class Curl implements ICurl
         throw new CurlException(curl_error($curl), curl_errno($curl));
     }
 
-    public function exec(): Response
+    public function exec(array $curlInfoExtender = []): Response
     {
         $rawData = curl_exec($this->curl) ?: '';
         if ($rawData === true) {
             $rawData = '';
         }
         $httpCode = $this->getHttpCode($this->curl);
+        
+        $moreInfo = [];
+        foreach ($curlInfoExtender as $item) {
+            $moreInfo += $item->get($this->curl);
+        }
 
         $headers = '';
         $body = $rawData;
@@ -131,7 +137,7 @@ class Curl implements ICurl
             $body = substr($rawData, $headerSize);
         }
 
-        return new Response($httpCode, $body, $headers);
+        return new Response($httpCode, $body, $headers, $moreInfo);
     }
 
     public function reset(): void

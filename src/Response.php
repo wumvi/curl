@@ -17,18 +17,22 @@ class Response
     /** @var string Headers */
     private string $headers;
 
+    private array $moreInfo;
+
     /**
      * Result constructor.
      *
      * @param int $httpCode Код ответа
      * @param string $data Данные ответа
      * @param string $headers Заголовки
+     * @param array $moreInfo Больше информации
      */
-    public function __construct(int $httpCode, string $data, string $headers)
+    public function __construct(int $httpCode, string $data, string $headers, array $moreInfo)
     {
         $this->httpCode = $httpCode;
         $this->data = $data;
         $this->headers = $headers;
+        $this->moreInfo = $moreInfo;
     }
 
     /**
@@ -57,5 +61,10 @@ class Response
     public function getHeaders(): string
     {
         return $this->headers;
+    }
+
+    public function getMoreInfo(): array
+    {
+        return $this->moreInfo;
     }
 }

@@ -12,6 +12,7 @@ class HeadMethodPipe extends Pipe
      */
     public function apply($curl): Pipe
     {
+        curl_setopt($curl, CURLOPT_NOBODY, true);
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'HEAD');
 
         return $this;
@@ -23,5 +24,6 @@ class HeadMethodPipe extends Pipe
     public function remove($curl): void
     {
         curl_setopt($curl, CURLOPT_CUSTOMREQUEST, 'GET');
+        curl_setopt($curl, CURLOPT_NOBODY, false);
     }
 }
